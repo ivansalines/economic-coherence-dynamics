@@ -1,4 +1,10 @@
 \documentclass[12pt,a4paper]{article}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -7,10 +13,6 @@
 \usepackage{geometry}
 \usepackage{bm}
 \usepackage{hyperref}
-\usepackage{tikz}
-\usetikzlibrary{calc,positioning}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
 
 \geometry{margin=2.4cm}
 
@@ -18,7 +20,7 @@
 Field Dynamics, Phase Alignment, and Emergent Structure}}
 
 \author{Ivan Salines -- Independent Researcher}
-\date{November 21, 2025}
+\date{\today}
 
 \begin{document}
 \maketitle
@@ -168,7 +170,7 @@ Defining $\Delta\theta = \theta_A - \theta_B$, the interaction energy takes the 
 \[
 E_{\rm int} = J \rho_A \rho_B \left[1 - \cos(\Delta\theta)\right].
 \]
-Its minima occur at $\Delta\theta = 2\pi k, k \in \mathbb{Z}$. Linearizing around these points shows that small deviations satisfy, in a suitable approximation,
+Its minima occur at $\Delta\theta = 2\pi k$, $k \in \mathbb{Z}$. Linearizing around these points shows that small deviations satisfy, in a suitable approximation,
 \[
 \delta\dot{\theta} \approx - J (\rho_A + \rho_B)\, \delta\theta,
 \]
@@ -182,9 +184,35 @@ This minimal example demonstrates how coherent modes arise not from external con
 
 \section{Conceptual Figures}
 
+In this section we outline two conceptual figures that can accompany the theoretical development. They can be implemented either as external PDF graphics or via TikZ, depending on the chosen workflow.
+
 \begin{figure}[h]
 \centering
-\input{figures/phase_alignment_diagram.tikz.tex}
+\begin{tikzpicture}
+  \begin{axis}[
+      width=0.7\textwidth,
+      height=0.45\textwidth,
+      axis lines=middle,
+      xlabel={$\Delta\theta$},
+      ylabel={$E_{\mathrm{int}}$},
+      xmin=-3.5, xmax=3.5,
+      ymin=-0.1, ymax=2.2,
+      xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+      xticklabels={$-\pi$, $-\frac{\pi}{2}$, $0$, $\frac{\pi}{2}$, $\pi$},
+      ytick={0,1,2},
+      domain=-3.1416:3.1416,
+      samples=200,
+      smooth
+  ]
+    % Curva E_int = 1 - cos(Δθ)
+    \addplot[thick] {1 - cos(deg(x))};
+
+    % Minimo in 0
+    \addplot[only marks, mark=*, mark size=2pt] coordinates {(0,0)};
+    \node[anchor=south] at (axis cs:0,0) {$\Delta\theta=0$};
+
+  \end{axis}
+\end{tikzpicture}
 \caption{
 Phase alignment diagram for the interaction energy
 $E_{\mathrm{int}} \propto 1 - \cos(\Delta\theta)$.
@@ -192,15 +220,51 @@ The minimum is attained at $\Delta\theta = 0$, corresponding to coherent evoluti
 \label{fig:phaseAlignment}
 \end{figure}
 
+
 \begin{figure}[h]
 \centering
-\input{figures/coherence_cluster_network.tikz.tex}
+\begin{tikzpicture}[scale=1.0,
+    node/.style={circle, draw, minimum size=9mm, inner sep=0pt},
+    strong/.style={line width=1.1pt},
+    weak/.style={line width=0.6pt, dashed}
+]
+
+% --- Cluster 1 (left) ---
+\node[node] (A) at (-3,  0.9) {$A$};
+\node[node] (B) at (-4, -0.3) {$B$};
+\node[node] (C) at (-2, -0.3) {$C$};
+
+% Strong internal links cluster 1
+\draw[strong] (A) -- (B);
+\draw[strong] (A) -- (C);
+\draw[strong] (B) -- (C);
+
+% --- Cluster 2 (right) ---
+\node[node] (D) at ( 3,  0.9) {$D$};
+\node[node] (E) at ( 2, -0.3) {$E$};
+\node[node] (F) at ( 4, -0.3) {$F$};
+
+% Strong internal links cluster 2
+\draw[strong] (D) -- (E);
+\draw[strong] (D) -- (F);
+\draw[strong] (E) -- (F);
+
+% --- Weak inter-cluster links ---
+\draw[weak] (C) -- (E);
+\draw[weak] (B) -- (E);
+
+% Optional region hints (light braces or labels)
+\node[above=4pt of A] {\small Coherence cluster 1};
+\node[above=4pt of D] {\small Coherence cluster 2};
+
+\end{tikzpicture}
 \caption{
-Example of a many-subsystem network with heterogeneous couplings $J_{ij}$.
-Strongly connected subsystems form coherence clusters whose phases evolve in unison.
-Weak links between clusters allow for interaction without destabilizing internal structure.}
+Schematic representation of two coherence clusters in a many-subsystem network.
+Thick links indicate strong couplings $J_{ij}$ leading to robust phase alignment within each cluster.
+Dashed links represent weaker interactions between clusters, allowing exchange without disrupting internal coherence.}
 \label{fig:clusters}
 \end{figure}
+
 
 \section{Conclusions}
 
