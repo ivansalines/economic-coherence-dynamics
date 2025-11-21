@@ -1,0 +1,391 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\geometry{margin=2.4cm}
+
+\title{\textbf{Two-Subsystem Economic Dynamics:\\
+Coherence, Cycles, and Relaxation}}
+
+\author{Ivan Salines --- Independent Researcher}
+\date{November 2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This chapter develops the two-subsystem economic field model as a minimal 
+laboratory for coherence, exchange cycles, and relaxation toward aligned 
+configurations. Starting from the density--phase Lagrangian, we derive the 
+reduced dynamical system for two interacting subsystems, analyze its conserved 
+quantities, identify fixed points and their stability, and discuss the 
+conditions under which persistent oscillations and phase-locked regimes emerge. 
+The model serves both as a conceptual bridge between the field-theoretic 
+formulation and numerical experiments, and as a template for understanding 
+larger networks of economic subsystems.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+The full economic field is a many-component system in which densities and 
+phases interact across a network of couplings. 
+To gain intuition about its dynamical behavior, it is useful to consider the 
+simplest non-trivial case: two interacting subsystems, labeled $A$ and $B$.
+
+In this reduced setting, the density--phase dynamics can be written as a 
+four-dimensional ordinary differential equation (ODE) for 
+$\rho_A(t)$, $\rho_B(t)$, $\theta_A(t)$, and $\theta_B(t)$. 
+Despite its simplicity, this model already exhibits:
+\begin{itemize}
+    \item conservation of total density,
+    \item relaxation of phase differences,
+    \item transient exchange cycles,
+    \item the emergence of coherent aligned states.
+\end{itemize}
+
+The two-subsystem model thus plays the role of a \emph{dynamical microscope} 
+for the economic field, revealing core mechanisms that persist in more 
+complex networks.
+
+\section{Two-Subsystem Lagrangian and Equations of Motion}
+
+We consider spatially uniform fields, so that all spatial gradients vanish and 
+only temporal evolution remains. 
+The Lagrangian for two subsystems $A$ and $B$ reduces to
+\begin{equation}
+L =
+ \rho_A \dot{\theta}_A + \rho_B \dot{\theta}_B
+ - V_A(\rho_A) - V_B(\rho_B)
+ - J\,\rho_A \rho_B \bigl[1 - \cos(\theta_A - \theta_B)\bigr],
+\label{eq:LagrangianTwo}
+\end{equation}
+where:
+\begin{itemize}
+    \item $\rho_A(t)$, $\rho_B(t)$ are the densities of the two subsystems,
+    \item $\theta_A(t)$, $\theta_B(t)$ are the phases,
+    \item $V_A$ and $V_B$ are local potentials,
+    \item $J \ge 0$ is the coupling strength.
+\end{itemize}
+
+Variation with respect to $\theta_A$ and $\theta_B$ yields:
+\begin{align}
+\dot{\rho}_A &= - J\,\rho_A \rho_B \,\sin(\theta_A - \theta_B),
+\label{eq:rhoAeq}\\
+\dot{\rho}_B &= + J\,\rho_A \rho_B \,\sin(\theta_A - \theta_B).
+\label{eq:rhoBeq}
+\end{align}
+Variation with respect to $\rho_A$ and $\rho_B$ gives:
+\begin{align}
+\dot{\theta}_A &= V_A'(\rho_A)
+                 + J \rho_B \bigl[1 - \cos(\theta_A - \theta_B)\bigr],
+\label{eq:thetaAeq}\\
+\dot{\theta}_B &= V_B'(\rho_B)
+                 + J \rho_A \bigl[1 - \cos(\theta_A - \theta_B)\bigr].
+\label{eq:thetaBeq}
+\end{align}
+
+These four equations form the basic dynamical system.
+
+\section{Conserved Total Density}
+
+Adding Eqs.~\eqref{eq:rhoAeq}--\eqref{eq:rhoBeq} we obtain:
+\begin{equation}
+\dot{\rho}_A + \dot{\rho}_B
+= - J \rho_A \rho_B \sin(\theta_A - \theta_B)
+  + J \rho_A \rho_B \sin(\theta_A - \theta_B)
+= 0.
+\end{equation}
+
+Hence
+\begin{equation}
+\rho_{\mathrm{tot}} = \rho_A + \rho_B
+\end{equation}
+is conserved:
+\begin{equation}
+\frac{\mathrm{d}\rho_{\mathrm{tot}}}{\mathrm{d}t} = 0.
+\end{equation}
+
+Economically, the two-subsystem dynamics reshuffle density between $A$ and $B$, 
+but do not create or annihilate it. 
+The model describes \emph{redistribution} under alignment forces, not 
+exogenous growth or depletion.
+
+\section{Phase Difference and Interaction Energy}
+
+It is convenient to introduce the phase difference
+\begin{equation}
+\Delta\theta = \theta_A - \theta_B.
+\end{equation}
+
+The interaction energy for the two subsystems is
+\begin{equation}
+E_{\mathrm{int}}
+= J \rho_A \rho_B \bigl[1 - \cos(\Delta\theta)\bigr].
+\end{equation}
+This term is minimized when
+\begin{equation}
+\Delta\theta = 2\pi k,\qquad k \in \mathbb{Z},
+\end{equation}
+corresponding to perfectly aligned phases.
+
+Differentiating $\Delta\theta$ with respect to time:
+\begin{align}
+\dot{\Delta\theta}
+&= \dot{\theta}_A - \dot{\theta}_B \nonumber\\
+&= V_A'(\rho_A) - V_B'(\rho_B)
+ + J \bigl[\rho_B - \rho_A\bigr] \bigl[1 - \cos(\Delta\theta)\bigr].
+\label{eq:deltathetaeq}
+\end{align}
+
+This shows that both the asymmetry in local potentials and differences in 
+density contribute to the evolution of the phase difference.
+
+\section{Local Potentials and Structural Baselines}
+
+To obtain a more explicit form, we consider quadratic potentials:
+\begin{align}
+V_A(\rho_A) &= \frac{1}{2} k_A (\rho_A - \rho_{0A})^2,\\
+V_B(\rho_B) &= \frac{1}{2} k_B (\rho_B - \rho_{0B})^2,
+\end{align}
+so that
+\begin{align}
+V_A'(\rho_A) &= k_A (\rho_A - \rho_{0A}),\\
+V_B'(\rho_B) &= k_B (\rho_B - \rho_{0B}).
+\end{align}
+
+These forms stabilize $\rho_A$ and $\rho_B$ around structural baselines 
+$\rho_{0A}$ and $\rho_{0B}$, with stiffness controlled by $k_A$ and $k_B$.
+
+Substituting into~\eqref{eq:deltathetaeq} yields:
+\begin{equation}
+\dot{\Delta\theta}
+= k_A (\rho_A - \rho_{0A}) - k_B (\rho_B - \rho_{0B})
+ + J (\rho_B - \rho_A)\,[1 - \cos(\Delta\theta)].
+\label{eq:deltathetaQuadratic}
+\end{equation}
+
+\section{Fixed Points and Coherent Alignment}
+
+Fixed points of the dynamics satisfy:
+\begin{align}
+\dot{\rho}_A &= 0, & \dot{\rho}_B &= 0,
+\label{eq:rhoFixedA}\\
+\dot{\theta}_A &= 0, & \dot{\theta}_B &= 0.
+\label{eq:thetaFixedA}
+\end{align}
+
+From~\eqref{eq:rhoAeq}--\eqref{eq:rhoBeq}, either:
+\begin{itemize}
+    \item $\rho_A = 0$ or $\rho_B = 0$, or
+    \item $\sin(\Delta\theta) = 0$.
+\end{itemize}
+
+We are interested in non-degenerate configurations with both densities 
+strictly positive, $\rho_A > 0$ and $\rho_B > 0$. 
+Then
+\begin{equation}
+\sin(\Delta\theta^\ast) = 0
+\quad\Rightarrow\quad
+\Delta\theta^\ast = n \pi,\qquad n \in \mathbb{Z}.
+\end{equation}
+
+For the interaction energy,
+\begin{equation}
+E_{\mathrm{int}}^\ast
+= J \rho_A \rho_B \bigl[1 - \cos(\Delta\theta^\ast)\bigr],
+\end{equation}
+this yields:
+\begin{itemize}
+    \item if $\Delta\theta^\ast = 2\pi k$, then $E_{\mathrm{int}}^\ast = 0$ 
+          (aligned phases, minimal interaction energy),
+    \item if $\Delta\theta^\ast = (2k+1)\pi$, then 
+          $E_{\mathrm{int}}^\ast = 2J \rho_A \rho_B$ (anti-aligned, maximal 
+          interaction energy).
+\end{itemize}
+
+Thus, the \emph{coherent fixed points} are those with:
+\begin{equation}
+\Delta\theta^\ast = 2\pi k, \qquad k\in\mathbb{Z},
+\end{equation}
+and densities satisfying the stationary conditions from
+Eqs.~\eqref{eq:thetaAeq}--\eqref{eq:thetaBeq}.
+
+\section{Linear Stability of the Coherent Fixed Point}
+
+We focus on a coherent fixed point with 
+$\Delta\theta^\ast = 0$ and $(\rho_A^\ast,\rho_B^\ast)$ such that:
+\begin{align}
+0 &= V_A'(\rho_A^\ast),\\
+0 &= V_B'(\rho_B^\ast).
+\end{align}
+For quadratic potentials, this implies 
+$\rho_A^\ast = \rho_{0A}$ and $\rho_B^\ast = \rho_{0B}$.
+
+We introduce small perturbations:
+\begin{align}
+\rho_A(t) &= \rho_A^\ast + \delta\rho_A(t),\\
+\rho_B(t) &= \rho_B^\ast + \delta\rho_B(t),\\
+\Delta\theta(t) &= 0 + \delta\theta(t),
+\end{align}
+with $|\delta\rho_A|, |\delta\rho_B|, |\delta\theta| \ll 1$.
+
+Expanding Eqs.~\eqref{eq:rhoAeq}, \eqref{eq:rhoBeq}, 
+and~\eqref{eq:deltathetaQuadratic} to linear order in the perturbations, we 
+use:
+\begin{align}
+\sin(\delta\theta) &\approx \delta\theta,\\
+1 - \cos(\delta\theta) &\approx \tfrac{1}{2} (\delta\theta)^2 \approx 0 
+\quad\text{at leading order}.
+\end{align}
+
+Thus, to first order,
+\begin{align}
+\dot{\delta\rho}_A &\approx - J \rho_A^\ast \rho_B^\ast\, \delta\theta,
+\label{eq:lin_rhoA}\\
+\dot{\delta\rho}_B &\approx + J \rho_A^\ast \rho_B^\ast\, \delta\theta,
+\label{eq:lin_rhoB}
+\end{align}
+and, since $V_A'(\rho_A^\ast) = V_B'(\rho_B^\ast) = 0$, we have:
+\begin{align}
+\dot{\delta\theta}
+&\approx k_A \delta\rho_A - k_B \delta\rho_B.
+\label{eq:lin_dtheta}
+\end{align}
+
+It is convenient to define:
+\begin{align}
+\delta\rho_{\mathrm{tot}} &= \delta\rho_A + \delta\rho_B,\\
+\delta\rho_{\mathrm{rel}} &= \delta\rho_A - \delta\rho_B.
+\end{align}
+From Eqs.~\eqref{eq:lin_rhoA}--\eqref{eq:lin_rhoB}:
+\begin{align}
+\dot{\delta\rho}_{\mathrm{tot}} &= 0,\\
+\dot{\delta\rho}_{\mathrm{rel}} &= -2 J \rho_A^\ast \rho_B^\ast\, \delta\theta.
+\end{align}
+The total density perturbation is thus conserved at linear order.
+
+Using~\eqref{eq:lin_dtheta} and 
+$\delta\rho_A = (\delta\rho_{\mathrm{tot}} + \delta\rho_{\mathrm{rel}})/2$, 
+$\delta\rho_B = (\delta\rho_{\mathrm{tot}} - \delta\rho_{\mathrm{rel}})/2$, we obtain:
+\begin{equation}
+\dot{\delta\theta}
+= \frac{1}{2}(k_A - k_B)\,\delta\rho_{\mathrm{tot}}
+ + \frac{1}{2}(k_A + k_B)\,\delta\rho_{\mathrm{rel}}.
+\end{equation}
+
+If we focus on perturbations that preserve total density at the linear level 
+(i.e.\ $\delta\rho_{\mathrm{tot}}=0$), the coupled system reduces to:
+\begin{align}
+\dot{\delta\rho}_{\mathrm{rel}} &= -2 J \rho_A^\ast \rho_B^\ast\, \delta\theta,
+\label{eq:sys_rel_1}\\
+\dot{\delta\theta} &= \frac{1}{2}(k_A + k_B)\,\delta\rho_{\mathrm{rel}}.
+\label{eq:sys_rel_2}
+\end{align}
+
+Differentiating~\eqref{eq:sys_rel_2} with respect to time and using 
+\eqref{eq:sys_rel_1} gives:
+\begin{equation}
+\ddot{\delta\theta}
+= \frac{1}{2}(k_A + k_B)\,\dot{\delta\rho}_{\mathrm{rel}}
+= - (k_A + k_B)\,J \rho_A^\ast \rho_B^\ast\, \delta\theta.
+\end{equation}
+
+Therefore,
+\begin{equation}
+\ddot{\delta\theta} + \omega^2 \delta\theta = 0,
+\qquad \omega^2 = (k_A + k_B)\,J \rho_A^\ast \rho_B^\ast > 0.
+\end{equation}
+
+This is a harmonic oscillator equation: small perturbations of the phase 
+difference around the coherent fixed point oscillate with frequency $\omega$. 
+In the presence of additional damping mechanisms (not included here), these 
+oscillations would decay, leading to exponential relaxation toward 
+$\Delta\theta = 0$.
+
+\subsection{Qualitative picture}
+
+The coherent fixed point with aligned phases and densities at their 
+structural baselines is linearly stable: small deviations in phase and 
+relative density lead to bounded oscillations. 
+In realistic settings, frictional or adaptation effects would damp these 
+oscillations, making the coherent state an attractor.
+
+Economically, this corresponds to two strongly interdependent subsystems 
+that settle into a stable, mutually aligned configuration, with exchange 
+flows organizing into recurrent and predictable patterns.
+
+\section{Exchange Cycles and Oscillatory Regimes}
+
+The linear analysis shows that small perturbations behave like a harmonic 
+oscillator. 
+Beyond the linear regime, the full nonlinear dynamics can generate:
+\begin{itemize}
+    \item larger-amplitude oscillations of $\Delta\theta(t)$,
+    \item periodic or quasi-periodic cycles in $\rho_A(t)$ and $\rho_B(t)$,
+    \item transitions between different phase-locked regimes.
+\end{itemize}
+
+These oscillatory regimes can be interpreted as \emph{exchange cycles}: 
+the two subsystems repeatedly transfer density back and forth, driven by 
+phase misalignment and then pulled back toward coherence by the alignment 
+force.
+
+Depending on the shape of the potentials $V_A$ and $V_B$, and on the coupling 
+strength $J$, the system may exhibit:
+\begin{itemize}
+    \item fast or slow relaxation to coherence,
+    \item persistent oscillations around the coherent state,
+    \item metastable patterns in which one subsystem temporarily dominates.
+\end{itemize}
+
+\section{Connection to Numerical Experiments}
+
+The two-subsystem model can be implemented numerically using standard ODE 
+integrators. 
+For example, one may choose:
+\begin{itemize}
+    \item quadratic potentials with given $(k_A,k_B,\rho_{0A},\rho_{0B})$,
+    \item initial densities $\rho_A(0)$, $\rho_B(0)$ with 
+          $\rho_A(0) + \rho_B(0) = \rho_{\mathrm{tot}}$,
+    \item a non-zero initial phase difference $\Delta\theta(0)$.
+\end{itemize}
+
+The resulting trajectories show:
+\begin{itemize}
+    \item that $\rho_A(t) + \rho_B(t)$ remains approximately constant,
+    \item that $\Delta\theta(t)$ tends to fluctuate around a coherent value,
+    \item how the characteristic frequency of oscillations depends on 
+          $J$, $k_A$, $k_B$, and the structural baselines.
+\end{itemize}
+
+Such numerical experiments provide a concrete, visual representation of the 
+abstract analysis carried out in this chapter, and form a bridge between 
+the analytic theory and applications to more complex multi-agent networks.
+
+\section{Conclusions}
+
+The two-subsystem economic model encapsulates, in minimal form, the essence 
+of density--phase dynamics:
+
+\begin{itemize}
+    \item conservation of total density as a consequence of phase symmetry,
+    \item coherent fixed points with aligned phases and structural densities,
+    \item oscillatory regimes around these coherent states,
+    \item exchange cycles driven by misalignment and constrained by coupling.
+\end{itemize}
+
+This model serves as a foundational building block for the study of larger 
+economic networks, where many subsystems interact. 
+The mechanisms of coherence, oscillation, and relaxation observed here will 
+reappear in richer forms when we consider clusters, modular structures, and 
+global economic fields.
+
+\end{document}
