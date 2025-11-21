@@ -35,19 +35,18 @@ It is meant to show:
 
 import numpy as np
 import matplotlib.pyplot as plt
-from dataclasses import dataclass
 
 
-@dataclass
-class Params:
-    J: float = 0.5      # coupling strength
-    kA: float = 0.2     # curvature of V_A
-    kB: float = 0.2     # curvature of V_B
-    rho0A: float = 1.0  # preferred density for A
-    rho0B: float = 1.0  # preferred density for B
+class Params(object):
+    def __init__(self, J=0.5, kA=0.2, kB=0.2, rho0A=1.0, rho0B=1.0):
+        self.J = J
+        self.kA = kA
+        self.kB = kB
+        self.rho0A = rho0A
+        self.rho0B = rho0B
 
 
-def potentials_prime(rho_A, rho_B, p: Params):
+def potentials_prime(rho_A, rho_B, p):
     """
     Compute V_A'(rho_A) and V_B'(rho_B) for quadratic potentials:
         V_i(rho_i) = 0.5 * k_i * (rho_i - rho0_i)^2
@@ -58,7 +57,7 @@ def potentials_prime(rho_A, rho_B, p: Params):
     return VA_prime, VB_prime
 
 
-def rhs(t, y, p: Params):
+def rhs(t, y, p):
     """
     Right-hand side of the ODE system.
 
@@ -81,24 +80,24 @@ def rhs(t, y, p: Params):
     return np.array([drho_A, drho_B, dtheta_A, dtheta_B])
 
 
-def rk4_step(f, t, y, dt, p: Params):
+def rk4_step(f, t, y, dt, p):
     """
     One Runge–Kutta 4 step:
 
         y_{n+1} = y_n + (dt/6) * (k1 + 2*k2 + 2*k3 + k4)
     """
-    k1 = f(t,         y,               p)
-    k2 = f(t + 0.5*dt, y + 0.5*dt*k1,  p)
-    k3 = f(t + 0.5*dt, y + 0.5*dt*k2,  p)
-    k4 = f(t + dt,     y + dt*k3,      p)
+    k1 = f(t,           y,              p)
+    k2 = f(t + 0.5*dt,  y + 0.5*dt*k1,  p)
+    k3 = f(t + 0.5*dt,  y + 0.5*dt*k2,  p)
+    k4 = f(t + dt,      y + dt*k3,      p)
     return y + (dt / 6.0) * (k1 + 2*k2 + 2*k3 + k4)
 
 
 def integrate_two_agent_model(
     y0,
-    t_max: float = 40.0,
-    dt: float = 0.01,
-    params: Params = None,
+    t_max=40.0,
+    dt=0.01,
+    params=None,
 ):
     """
     Integrate the two-agent system from t=0 to t=t_max with step dt.
