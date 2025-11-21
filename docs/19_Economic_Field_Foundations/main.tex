@@ -1,0 +1,195 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\geometry{margin=2.4cm}
+
+\title{\textbf{Foundations of the Economic Field:\\
+Density, Phase, and the Geometry of Coherent Exchange}}
+
+\author{Ivan Salines --- Independent Researcher}
+\date{November 2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document introduces the foundational structure of the \emph{economic field}, 
+a continuum formulation in which economic subsystems are represented by coupled scalar 
+fields: a density field and a phase field. 
+The purpose of this first chapter is to define these fields, establish their 
+interpretation, and derive the geometric and dynamical principles that govern 
+their interactions. 
+The construction is parallel in spirit to the field-theoretic formulation of 
+organized motion developed in physics, but remains fully autonomous and 
+distilled to the essential phenomenology of economic coordination. 
+Coherence, alignment, and circulation arise not as imposed structures but as 
+energetically favorable configurations of the field.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+Economic systems are commonly described in terms of aggregated variables, 
+representative agents, or discrete multi-sector frameworks. 
+Yet real economic organization displays large-scale coherence: 
+long-lived exchange patterns, persistent directional flows, cluster formation, 
+and organized modes of interdependence.
+
+Such coherence suggests the presence of an underlying geometric structure---a 
+field-theoretic substrate in which macroscopic order emerges from local 
+interactions.
+
+In this document we introduce the \emph{economic field}, composed of:
+\begin{itemize}
+    \item a \textbf{density field} $\rho(x,t)$,
+    \item a \textbf{phase field} $\theta(x,t)$,
+\end{itemize}
+defined on a continuum domain, which together form the minimal description of 
+organized economic motion.  
+These fields are not metaphors: they are dynamical variables whose interactions 
+give rise to observable macroeconomic patterns.
+
+\section{The Density Field \texorpdfstring{$\rho(x,t)$}{rho(x,t)}}
+
+The density field $\rho(x,t)$ represents the distribution of economic resources, 
+capacity, or potential at point $x$ and time $t$.  
+While its interpretation can be adapted to context, its role is invariant:
+
+\begin{quote}
+\centering
+\textit{Density measures the intensity of local economic presence.}
+\end{quote}
+
+High density corresponds to a region or subsystem with substantial productive 
+capability, structural significance, or accumulated potential.  
+Low density indicates scarcity, fragility, or underdeveloped infrastructure.
+
+Mathematically, $\rho(x,t)$ behaves like a conserved scalar field: in the absence 
+of external injection, its integral over the whole domain remains constant. 
+This reflects the principle that economic value is internally redistributed, not 
+created or destroyed by the dynamics itself.
+
+\subsection{Local Potentials}
+
+Each subsystem is endowed with a local potential $V(\rho)$ which captures 
+structural or technological constraints. 
+Typical choices stabilize $\rho$ near an operational reference value $\rho_0$.
+
+A minimal example is the quadratic potential:
+\[
+V(\rho) = \frac{1}{2} k (\rho - \rho_0)^2,
+\]
+where $k$ measures structural rigidity.
+
+\section{The Phase Field \texorpdfstring{$\theta(x,t)$}{theta(x,t)}}
+
+The phase field encodes orientation, expectations, or strategic direction.
+Its interpretation is subtle but essential:
+
+\begin{quote}
+\centering
+\textit{Phase is the directional state of the subsystem, governing how density flows.}
+\end{quote}
+
+Changes in $\theta$ correspond to modifications in strategy, alignment, or local 
+economic directionality.
+
+Gradients of phase,
+\[
+\nabla\theta(x,t),
+\]
+drive flows of density, representing directional reallocation or shifts in 
+activity.
+
+The phase field is not arbitrary: it is dynamically driven by internal potential 
+forces and by phase differences between interdependent subsystems.
+
+\section{The Economic Lagrangian}
+
+The economic field is governed by a Lagrangian density of the form:
+\begin{equation}
+\mathcal{L}
+= \rho\,\frac{\partial\theta}{\partial t}
+ - \frac{1}{2}\,\rho\,|\nabla\theta|^2
+ - V(\rho)
+ - \sum_{j} J_{j}\,\rho\,\rho_j\,[1 - \cos(\theta - \theta_j)].
+\end{equation}
+
+This structure encodes:
+\begin{itemize}
+    \item temporal evolution of phase weighted by density,
+    \item energetic cost for spatial misalignment,
+    \item structural constraints via the potential $V(\rho)$,
+    \item pairwise alignment forces via the cosine coupling.
+\end{itemize}
+
+The geometric meaning is profound: coherence is energetically favored; 
+fragmentation is costly.
+
+\section{Euler--Lagrange Equations}
+
+Variation with respect to $\theta$ yields a continuity equation:
+\[
+\partial_t \rho + \nabla \cdot (\rho \nabla\theta)
+= \sum_j J_j\,\rho\,\rho_j\,\sin(\theta - \theta_j).
+\]
+
+Variation with respect to $\rho$ yields a Hamilton--Jacobi-type equation:
+\[
+\partial_t \theta
++ \frac{1}{2}|\nabla\theta|^2
++ V'(\rho)
++ \sum_j J_j\,\rho_j\,[1 - \cos(\theta - \theta_j)]
+= 0.
+\]
+
+Together these describe the full dynamics of the economic field.
+
+\section{Interpretation and Geometry of Coherence}
+
+\subsection{Alignment Forces}
+
+The interaction term promotes alignment of phases.  
+At equilibrium, interdependent subsystems settle into coherent orientations:
+\[
+\theta \approx \theta_j.
+\]
+
+Misalignment generates tension and induces reallocation flows.
+
+\subsection{Coherence Clusters}
+
+Strongly coupled subsystems form clusters in which phases lock together.  
+These clusters behave as macro-entities, maintaining identity and resisting 
+perturbations.
+
+\subsection{Efficient Exchange Cycles}
+
+When phase differences vanish, density flows become cyclic and recurrent, 
+producing stable exchange structures.
+
+\section{Summary}
+
+The economic field is the foundational geometric structure from which large-scale 
+economic order emerges.  
+Density and phase jointly encode resource distribution and strategic orientation, 
+while the Lagrangian formalism endows the system with endogenous dynamics.
+
+This first chapter establishes the core conceptual and mathematical substrate on 
+which the remainder of the economic coherence theory is built.
+Future chapters will explore interaction networks, cluster dynamics, oscillatory 
+regimes, and the geometry of coherent macroeconomic organization.
+
+\end{document}
