@@ -1,0 +1,328 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\geometry{margin=2.4cm}
+
+\title{\textbf{Symmetries and Conservation Laws in the Economic Field:\\
+Global Phase, Translations, and Coherent Invariants}}
+
+\author{Ivan Salines --- Independent Researcher}
+\date{November 2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document develops the symmetry structure of the economic field and the 
+associated conservation laws. Building on the density--phase description 
+introduced in the foundational chapter, we identify three principal symmetries:
+global phase shifts, spatial translations, and time translations. 
+These symmetries are interpreted in economic terms as invariance under 
+re-labellings of orientation, homogeneity of the underlying domain, and 
+persistence of internal structure. 
+Each symmetry leads to a conserved quantity: total density, a momentum-like 
+flow invariant, and a Hamiltonian functional. 
+Together, these results provide a geometric backbone for coherent economic 
+dynamics, linking field symmetries to observable macroscopic invariants.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+The economic field is defined in terms of a density field $\rho(x,t)$ and a 
+phase field $\theta(x,t)$, whose joint dynamics are governed by a 
+Lagrangian functional. 
+Beyond the specific form of the Lagrangian, its \emph{symmetries} encode 
+deep structural properties of the system. 
+They determine which quantities are conserved, how coherence can persist, and 
+which transformations leave the underlying economics unchanged.
+
+This chapter examines three principal symmetries:
+\begin{itemize}
+    \item global phase symmetry,
+    \item spatial translation symmetry,
+    \item time translation symmetry.
+\end{itemize}
+Each symmetry has a clear economic interpretation and an associated conserved 
+quantity, in direct analogy with Noether's theorem in field theory.
+
+\section{Lagrangian Structure of the Economic Field}
+
+We recall the Lagrangian density for a multi-component economic field:
+\begin{equation}
+\mathcal{L}
+= \sum_{i=1}^{N} \left[
+ \rho_i\,\frac{\partial \theta_i}{\partial t}
+ - \frac{1}{2}\,\rho_i\,|\nabla \theta_i|^2
+ - V_i(\rho_i)
+\right]
+- \sum_{1 \le i < j \le N}
+   J_{ij}\,\rho_i\,\rho_j\,
+   \bigl[\,1 - \cos(\theta_i - \theta_j)\,\bigr],
+\label{eq:LagrangianEconomic}
+\end{equation}
+where:
+\begin{itemize}
+    \item $\rho_i(x,t)$ is the density field of subsystem $i$,
+    \item $\theta_i(x,t)$ is its phase field,
+    \item $V_i(\rho_i)$ is a local potential stabilizing $\rho_i$,
+    \item $J_{ij} \ge 0$ encodes the strength of interdependence between $i$ and $j$.
+\end{itemize}
+
+The action functional is
+\begin{equation}
+S = \int \mathcal{L}\,\mathrm{d}^d x\,\mathrm{d}t,
+\end{equation}
+and the dynamics follow from the stationary action principle 
+$\delta S = 0$ under suitable variations of $\rho_i$ and $\theta_i$.
+
+\section{Global Phase Symmetry}
+
+\subsection{Definition of the symmetry}
+
+Consider a global shift of all phases:
+\begin{equation}
+\theta_i(x,t) \;\mapsto\; \theta_i(x,t) + \alpha,
+\qquad \forall i,\ \forall x,\ \forall t,
+\label{eq:GlobalPhaseShift}
+\end{equation}
+where $\alpha$ is a constant independent of space, time, and subsystem index.
+
+Under this transformation:
+\begin{itemize}
+    \item The phase differences $\theta_i - \theta_j$ remain unchanged.
+    \item The gradients $\nabla\theta_i$ are unaffected.
+    \item The densities $\rho_i$ are unchanged.
+\end{itemize}
+
+Since the Lagrangian \eqref{eq:LagrangianEconomic} depends on $\theta_i$ 
+only through $\partial_t\theta_i$, $\nabla\theta_i$, and differences 
+$\theta_i - \theta_j$, a uniform shift~\eqref{eq:GlobalPhaseShift} leaves 
+$\mathcal{L}$ invariant. 
+Thus, the economic field exhibits a global phase symmetry.
+
+\subsection{Economic interpretation}
+
+Global phase symmetry reflects the fact that only \emph{relative} orientation 
+matters. 
+If all subsystems rotate their strategic or expectation state by the same 
+constant offset, the economic configuration is unchanged. 
+There is no absolute reference direction in phase space; only differences 
+drive reallocation and tension.
+
+This expresses an economic principle:
+\begin{quote}
+\centering
+\textit{Value flows and tensions depend on relative misalignment, not on any absolute orientation.}
+\end{quote}
+
+\subsection{Associated conservation law: total density}
+
+As in standard field theory, continuous symmetries of the action correspond 
+to conserved quantities. 
+For global phase symmetry, the conserved quantity is the total density.
+
+To see this, consider the continuity equation obtained by varying $\theta_i$:
+\begin{equation}
+\frac{\partial \rho_i}{\partial t}
++ \nabla \cdot \left( \rho_i \nabla \theta_i \right)
+= \sum_{j \ne i} J_{ij}\,\rho_i \rho_j\,\sin(\theta_i - \theta_j),
+\label{eq:rhoEvolutionA2}
+\end{equation}
+and sum over all $i$:
+\begin{equation}
+\frac{\partial}{\partial t}
+\left( \sum_i \rho_i \right)
++ \nabla \cdot \left( \sum_i \rho_i \nabla \theta_i \right)
+= \sum_i \sum_{j \ne i} J_{ij}\,\rho_i \rho_j\,\sin(\theta_i - \theta_j).
+\end{equation}
+The double sum on the right-hand side cancels due to antisymmetry:
+\[
+J_{ij}\,\rho_i \rho_j\,\sin(\theta_i - \theta_j)
+= -J_{ji}\,\rho_j \rho_i\,\sin(\theta_j - \theta_i),
+\]
+and $J_{ij} = J_{ji}$.
+
+Therefore,
+\begin{equation}
+\frac{\partial}{\partial t}\left( \sum_i \rho_i \right)
++ \nabla \cdot \left( \sum_i \rho_i \nabla \theta_i \right)
+= 0.
+\label{eq:TotalDensityConservation}
+\end{equation}
+
+Integrating over the whole domain and assuming appropriate boundary conditions 
+(e.g.\ vanishing flux at infinity or periodic boundaries), we obtain:
+\begin{equation}
+\frac{\mathrm{d}}{\mathrm{d}t}
+\int \sum_i \rho_i(x,t)\,\mathrm{d}^d x
+= 0.
+\end{equation}
+Thus, the total density is conserved.
+
+Economically, this means that the field dynamics \emph{redistribute} value but 
+do not create or annihilate it internally. 
+The global amount of economic presence is an invariant of the motion.
+
+\section{Spatial Translation Symmetry}
+
+\subsection{Homogeneity of the underlying domain}
+
+Consider a spatial translation:
+\begin{equation}
+x \;\mapsto\; x + a,
+\qquad a \in \mathbb{R}^d,
+\label{eq:SpatialTranslation}
+\end{equation}
+with time unchanged. 
+If the Lagrangian density does not depend explicitly on $x$ (i.e.\ there are 
+no externally imposed spatial inhomogeneities), then 
+$\mathcal{L}$ is invariant under~\eqref{eq:SpatialTranslation}.
+
+This reflects an assumption of \emph{homogeneity}: the local rules governing 
+interaction and evolution are the same across the domain. 
+Spatial structure may still emerge through the configuration of $\rho_i$ and 
+$\theta_i$, but it is not hard-coded into $\mathcal{L}$.
+
+\subsection{Momentum-like conserved quantity}
+
+Spatial translation symmetry implies the conservation of a momentum-like 
+quantity. 
+Formally, one can define a stress-energy tensor $T^{\mu\nu}$ associated with 
+the Lagrangian, whose spatial components yield conserved currents.
+
+In the purely economic reading, we restrict attention to the continuity of 
+economic flows:
+\begin{equation}
+\partial_t \rho_i + \nabla \cdot j_i = \text{(interaction terms)},
+\end{equation}
+with
+\[
+j_i = \rho_i \nabla\theta_i,
+\]
+the flux of density of subsystem $i$.
+
+Translation invariance implies that the \emph{integrated} momentum of the field,
+constructed from $\rho_i$ and $\nabla\theta_i$, is conserved in the absence of 
+external forces or explicit spatial dependence in $V_i$ and $J_{ij}$.
+
+Intuitively, the system cannot generate a net drift in one direction without 
+breaking the underlying homogeneity. 
+Patterns may propagate and clusters may move, but the aggregate momentum-like 
+quantity remains invariant.
+
+\subsection{Economic interpretation}
+
+Spatial translation symmetry captures the idea that the dynamics do not 
+privilege any specific location. 
+Regions may differ in realized density and phase, but the underlying rules are 
+uniform.
+
+Economically, this is a natural abstraction for modeling large-scale structures 
+where local differences emerge endogenously, rather than being imposed by 
+external spatial biases.
+
+\section{Time Translation Symmetry}
+
+\subsection{Autonomous dynamics}
+
+A key property of the Lagrangian~\eqref{eq:LagrangianEconomic} is that it has 
+no explicit dependence on time $t$: it depends on $t$ only through the fields 
+$\rho_i(x,t)$ and $\theta_i(x,t)$ and their derivatives.
+
+A time translation:
+\begin{equation}
+t \;\mapsto\; t + \tau,
+\label{eq:TimeTranslation}
+\end{equation}
+with $\tau$ constant, leaves the action invariant.
+
+This is the statement that the system is \emph{autonomous}: the rules of 
+evolution are the same at all times. 
+Dynamics may lead to different configurations, but the underlying law does not 
+change.
+
+\subsection{Conservation of the Hamiltonian functional}
+
+Time translation symmetry implies the conservation of a Hamiltonian functional 
+$H$, often interpreted as the total energy of the field.
+
+For the economic field, $H$ takes the schematic form:
+\begin{equation}
+H = \int \left[
+ \sum_i \frac{1}{2}\,\rho_i\,|\nabla \theta_i|^2
+ + \sum_i V_i(\rho_i)
+ + \sum_{i < j} J_{ij}\,\rho_i \rho_j\,
+   \bigl[1 - \cos(\theta_i - \theta_j)\bigr]
+\right] \mathrm{d}^d x.
+\label{eq:EconomicHamiltonian}
+\end{equation}
+
+This Hamiltonian collects three contributions:
+\begin{itemize}
+    \item a kinetic-like term associated with phase gradients,
+    \item local structural energy from the potentials $V_i$,
+    \item interaction energy from phase-dependent couplings.
+\end{itemize}
+
+Time translation symmetry then yields:
+\begin{equation}
+\frac{\mathrm{d}H}{\mathrm{d}t} = 0,
+\end{equation}
+under the field equations derived from $\mathcal{L}$.
+
+\subsection{Economic meaning of $H$}
+
+The Hamiltonian $H$ measures the global tension and structure of the economic 
+field: 
+\begin{itemize}
+    \item large gradients of phase correspond to high directional tension,
+    \item deviations of $\rho_i$ from their structural baselines contribute 
+          local strain,
+    \item misaligned phases across strongly coupled subsystems raise the 
+          interaction energy.
+\end{itemize}
+
+Conservation of $H$ in the autonomous model means that the system can 
+redistribute and reorganize tension, but not eliminate it entirely through 
+internal dynamics alone. 
+Relaxation toward coherent states redistributes energy between kinetic, 
+potential, and interaction contributions, but the total remains fixed.
+
+\section{Summary of Symmetry Structure}
+
+We summarize the symmetry structure and associated invariants:
+
+\begin{itemize}
+    \item \textbf{Global phase symmetry}: 
+    invariance under $\theta_i \mapsto \theta_i + \alpha$ for all $i$,
+    leading to conservation of total density 
+    $\int \sum_i \rho_i\,\mathrm{d}^d x$.
+
+    \item \textbf{Spatial translation symmetry}: 
+    invariance under $x \mapsto x + a$, implying the existence of a 
+    momentum-like conserved quantity associated with the uniformity 
+    of the underlying domain.
+
+    \item \textbf{Time translation symmetry}: 
+    invariance under $t \mapsto t + \tau$, yielding conservation of the 
+    Hamiltonian functional $H$ in~\eqref{eq:EconomicHamiltonian}.
+\end{itemize}
+
+These symmetries define the geometric backbone of the economic field. 
+They constrain the possible dynamics, explain the persistence of certain 
+macroscopic quantities, and identify coherent states as low-energy 
+configurations consistent with the invariants of motion.
+
+Future chapters will build on this structure to analyze coherence clusters, 
+oscillatory regimes, and the response of the field to external perturbations.
+
+\end{document}
