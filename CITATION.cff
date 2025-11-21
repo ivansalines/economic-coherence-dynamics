@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Economic Coherence Dynamics"
+abstract: >
+  A field-theoretic Lagrangian framework for economic systems, in which
+  each subsystem is described by a density field and a phase field.
+  The interplay of density, phase, and interdependence yields coherent
+  clusters, stable exchange cycles, and emergent macro-structures.
+authors:
+  - family-names: "Salines"
+    given-names: "Ivan"
+    affiliation: "Independent Researcher"
+keywords:
+  - economic coherence
+  - field theory
+  - Lagrangian dynamics
+  - phase alignment
+  - complex systems
+  - macroeconomic structure
+license: "MIT"
+type: software
+repository-code: "https://github.com/ivansalines/economic-coherence-dynamics"
+preferred-citation:
+  type: article
+  title: "A Lagrangian Framework for Economic Coherence: Field Dynamics, Phase Alignment, and Emergent Structure"
+  authors:
+    - family-names: "Salines"
+      given-names: "Ivan"
+  year: 2025
+  journal: ""
+  doi: ""
+  notes: "Working paper hosted in this repository."
