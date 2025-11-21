@@ -2,7 +2,7 @@
 
 **Economic Coherence Dynamics** is a field-theoretic framework for macroeconomic systems,
 based on interacting density–phase fields. Each subsystem (sector, region, cluster) is
-described by a density field \(\rho_i(x,t)\) and a phase field \(\theta_i(x,t)\).
+described by a density field ρᵢ(x,t) and a phase field θᵢ(x,t).
 The interplay of density, phase, and interdependence gives rise to coherent structures,
 stable exchange cycles, and emergent macro-organizational patterns.
 
