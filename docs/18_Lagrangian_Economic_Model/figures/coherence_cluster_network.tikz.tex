@@ -1,0 +1,29 @@
+\begin{tikzpicture}[scale=1.0,
+    node/.style={circle, draw, minimum size=9mm, inner sep=0pt},
+    strong/.style={line width=1.1pt},
+    weak/.style={line width=0.6pt, dashed}
+]
+
+\node[node] (A) at (-3,  0.9) {$A$};
+\node[node] (B) at (-4, -0.3) {$B$};
+\node[node] (C) at (-2, -0.3) {$C$};
+
+\draw[strong] (A) -- (B);
+\draw[strong] (A) -- (C);
+\draw[strong] (B) -- (C);
+
+\node[node] (D) at ( 3,  0.9) {$D$};
+\node[node] (E) at ( 2, -0.3) {$E$};
+\node[node] (F) at ( 4, -0.3) {$F$};
+
+\draw[strong] (D) -- (E);
+\draw[strong] (D) -- (F);
+\draw[strong] (E) -- (F);
+
+\draw[weak] (C) -- (E);
+\draw[weak] (B) -- (E);
+
+\node[above=4pt of A] {\small Coherence cluster 1};
+\node[above=4pt of D] {\small Coherence cluster 2};
+
+\end{tikzpicture}
